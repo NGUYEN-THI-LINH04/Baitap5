@@ -169,7 +169,7 @@ Double click node influxdb
 
 - Node-Red lúc đầu để xem dữ liệu vào InfluxDB chưa
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ccd557ef-f750-4ffe-89e6-14e632c849bc" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f2d0c9e6-8532-4ab0-8273-4558a85b2423" />
 
 - Test InfluxDB có dữ liệu chưa
 
@@ -212,4 +212,23 @@ Cấu hình datasource
 - Kết quả
 
 <img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/b1e28758-8ae6-43d5-9125-1e543c00c3d6" />
+
+- TẠO FRONTEND WEB
+  + mở: cd frontend
+   + tạo file: nano index.html
+
+<img width="941" height="1065" alt="image" src="https://github.com/user-attachments/assets/434596f9-49c1-4f7c-abbc-3f651d937c2b" />
+
+- tạo nginx config
+  +  Mở: cd nginx
+  + Tạo file: nano default.conf
+
+<img width="941" height="483" alt="image" src="https://github.com/user-attachments/assets/625240a4-7acf-40cb-b861-3a4458e4b538" />
+
+Mở: http://192.168.44.134:8080
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/fc538eac-845a-49f4-b36f-d0b3d106175e" />
+
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c1c733a-47eb-44d8-82f8-b9a8701cfd7c" />
 
