@@ -240,3 +240,38 @@ Mở: http://192.168.44.134:8080
 - NODE-RED + TELEGRAM BOT ALERT
 
 
+- Add bot vào group
+
+
+- Cài node Telegram trong Node-RED
+
+<img width="627" height="911" alt="image" src="https://github.com/user-attachments/assets/a253df79-12eb-430c-b4e7-e147993654fd" />
+
+- Kéo node telegram sender
+  ``` text
+  telegram sender
+  ```
+Cấu hình bot
+
+<img width="950" height="966" alt="Screenshot 2026-06-04 224938" src="https://github.com/user-attachments/assets/11e1c28c-21a1-4c9c-b21d-ea55a4e69e06" />
+
+- Thêm node Switch
++ Ở bên trái Node-RED tìm: switch
+
+- Cấu hình switch
+
+<img width="635" height="913" alt="image" src="https://github.com/user-attachments/assets/d6ef1129-907d-4fe6-ba5d-b9629b48e8ba" />
+
+- Thêm  function node
+
+  <img width="821" height="930" alt="image" src="https://github.com/user-attachments/assets/49420e23-7b9e-42c7-9516-9a6fc718e438" />
+
+- Đây là hình Node-Red hoàn chỉnh
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/008158d0-0ffa-43ab-ad71-4822570392ef" />
+
+- Kết quả ở bot
+
+
+
+
