@@ -203,16 +203,6 @@ Cấu hình datasource
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e2f6f064-be03-4761-bbc1-a8679def0a36" />
 
-- Tạo cảnh báo nhiệt độ cao
-
-- Đặt tên cảnh báo: High Temperature Alert
-
-  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61d8b02f-cb2e-4c35-a161-789cb23a2813" />
-
-- Kết quả
-
-<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/b1e28758-8ae6-43d5-9125-1e543c00c3d6" />
-
 - TẠO FRONTEND WEB
   + mở: cd frontend
    + tạo file: nano index.html
@@ -231,4 +221,22 @@ Mở: http://192.168.44.134:8080
 
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c1c733a-47eb-44d8-82f8-b9a8701cfd7c" />
+
+- ALERT DỮ LIỆU BẤT THƯỜNG
+
+- Tạo 2 rule alert
+  + Alert HIGH
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61d8b02f-cb2e-4c35-a161-789cb23a2813" />
+
+- Kết quả
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/b1e28758-8ae6-43d5-9125-1e543c00c3d6" />
+
+  + TẠO ALERT LOW
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3cdf65df-d9fb-4cf9-8bc7-9e04353e6d17" />
+
+- NODE-RED + TELEGRAM BOT ALERT
+
 
