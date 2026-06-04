@@ -133,3 +133,44 @@ Mở: http://192.168.44.134:5000/api/weather
 
 <img width="941" height="454" alt="image" src="https://github.com/user-attachments/assets/7eacf4b8-0f54-42ac-9fe2-df2cd30456df" />
 
+Mở Node-RED
+
+Trên trình duyệt Windows mở: http://192.168.44.134:1880
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/6fc79d29-9bde-4f2d-a352-22f360b25173" />
+
+Import flow
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/ecac070b-885c-4fd3-b25d-11721ec0926f" />
+
+- LƯU LỊCH SỬ VÀO INFLUXDB
+
+- Mở InfluxDB
+
+Trình duyệt mở: http://192.168.44.134:8086
+
+<img width="941" height="1056" alt="image" src="https://github.com/user-attachments/assets/4760e2e9-a73f-4b39-80b2-a547621b3dff" />
+
+Tạo tài khoản
+
+<img width="941" height="1066" alt="image" src="https://github.com/user-attachments/assets/340e83bc-854b-45ef-8fd4-e88f0672f5af" />
+
+CÀI NODE INFLUXDB CHO NODE-RED
+
+<img width="494" height="539" alt="image" src="https://github.com/user-attachments/assets/89018283-c538-48ba-8ca4-198be777dc6d" />
+
+Double click node influxdb
+
+Điền cấu hình
+
+<img width="941" height="939" alt="Screenshot 2026-06-04 160941" src="https://github.com/user-attachments/assets/72f715e5-377b-4959-b0f0-af0108bfa816" />
+
+<img width="691" height="924" alt="image" src="https://github.com/user-attachments/assets/ef9b8847-2011-4095-93cf-fcdcc2908301" />
+
+- Node-Red lúc đầu để xem dữ liệu vào InfluxDB chưa
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ccd557ef-f750-4ffe-89e6-14e632c849bc" />
+
+- Test InfluxDB có dữ liệu chưa
+
+
