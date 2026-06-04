@@ -272,6 +272,52 @@ Cấu hình bot
 
 - Kết quả ở bot
 
+Một số container lớn như Grafana, Node-RED không export được do giới hạn dung lượng máy ảo Ubuntu (20GB), hệ thống báo:
+
+No space left on device
+
+<img width="941" height="96" alt="image" src="https://github.com/user-attachments/assets/8dd22c36-d1fc-461c-9ed9-c24b511fc5ac" />
+
+- xuất tất cả các container ra file nén.
+ 
+ <img width="941" height="380" alt="image" src="https://github.com/user-attachments/assets/dcab9040-5385-4077-a708-9ee2d0f218c7" />
+
+- xoá mọi container đang chạy
+  
+  + chạy lệnh này 
+``` text
+docker compose down
+```
+<img width="1085" height="368" alt="image" src="https://github.com/user-attachments/assets/b77cbdff-db4a-4b41-8fbe-ca9b8f2a26a6" />
+
+- load lại các container  từ file nén để khôi phục các container đã xoá
+
+- docker load -i flaskapi.tar
+
+- docker load -i influxdb.tar
+
+- docker load -i nginx.tar
+
+MariaDB:
+
+- gunzip mariadb.tar.gz
+
+- docker load -i mariadb.tar
+  
+<img width="909" height="233" alt="image" src="https://github.com/user-attachments/assets/e3e07404-2e4d-4147-b33b-860debe9914d" />
+
+<img width="941" height="271" alt="image" src="https://github.com/user-attachments/assets/48f87b5f-b01f-47f7-a014-5308112226d9" />
+
+- Khởi động lại hệ thống
+``` text
+docker compose up -d
+```
+Kiểm tra:
+``` text
+docker ps
+```
+<img width="952" height="778" alt="image" src="https://github.com/user-attachments/assets/9b5fd115-8097-4b3c-b321-33bd1a2cea5e" />
+
 
 
 
