@@ -40,6 +40,501 @@ Bt5:
      load lại các container  từ file nén để khôi phục các container đã xoá
 ============================================================================================
 # BÀI LÀM
+## LÝ THUYẾT
+
+## 1. Docker là gì?
+
+Docker là một nền tảng mã nguồn mở giúp đóng gói, triển khai và chạy ứng dụng trong các môi trường độc lập gọi là **container**.
+
+Container chứa đầy đủ các thành phần cần thiết để ứng dụng hoạt động như:
+
+* Source code
+* Runtime
+* Libraries (thư viện)
+* Dependencies
+* Biến môi trường
+
+Nhờ đó, ứng dụng có thể chạy giống nhau trên mọi môi trường khác nhau như:
+
+* Máy cá nhân
+* Máy chủ nội bộ
+* Cloud server
+* Máy không có Internet
+
+### Ví dụ
+
+Nếu một ứng dụng Node.js chạy tốt trên laptop cá nhân bằng Docker thì khi chuyển sang máy chủ khác, ứng dụng vẫn chạy ổn định mà không bị lỗi khác phiên bản thư viện hay hệ điều hành.
+
+### Các thành phần chính của Docker
+
+* **Docker Engine**: môi trường chạy Docker
+* **Docker Image**: khuôn mẫu chứa ứng dụng và thư viện
+* **Docker Container**: phiên bản đang chạy của image
+* **Docker Hub**: kho chứa image trực tuyến
+
+Ví dụ chạy nginx:
+
+```bash
+docker run nginx
+```
+
+Lệnh trên sẽ:
+
+1. Tải image nginx (nếu chưa có)
+2. Tạo container
+3. Chạy web server nginx
+
+---
+
+## 2. Các keyword trong docker-compose.yml
+
+File `docker-compose.yml` dùng để mô tả và quản lý nhiều container cùng lúc.
+
+### 2.1 version
+
+Xác định phiên bản cấu hình Docker Compose.
+
+Ví dụ:
+
+```yaml
+version: '3.8'
+```
+
+**Ý nghĩa:**
+Giúp Docker hiểu cú pháp compose đang sử dụng.
+
+---
+
+### 2.2 services
+
+Dùng để khai báo các service (ứng dụng/container).
+
+Ví dụ:
+
+```yaml
+services:
+  web:
+    image: nginx
+```
+
+**Ý nghĩa:**
+Mỗi service tương ứng với một container.
+
+---
+
+### 2.3 image
+
+Xác định image được dùng để tạo container.
+
+Ví dụ:
+
+```yaml
+image: nginx
+```
+
+**Ý nghĩa:**
+Sử dụng image nginx có sẵn.
+
+---
+
+### 2.4 build
+
+Dùng để build image từ Dockerfile.
+
+Ví dụ:
+
+```yaml
+build: .
+```
+
+Hoặc:
+
+```yaml
+build:
+  context: .
+  dockerfile: Dockerfile
+```
+
+**Ý nghĩa:**
+Docker sẽ tự build image từ source code.
+
+---
+
+### 2.5 container_name
+
+Đặt tên cho container.
+
+Ví dụ:
+
+```yaml
+container_name: my-nginx
+```
+
+**Ý nghĩa:**
+Dễ quản lý container hơn.
+
+---
+
+### 2.6 ports
+
+Mapping cổng máy thật với container.
+
+Ví dụ:
+
+```yaml
+ports:
+  - "8080:80"
+```
+
+**Ý nghĩa:**
+Port `8080` trên máy thật sẽ ánh xạ tới port `80` trong container.
+
+Truy cập:
+
+```text
+localhost:8080
+```
+
+để vào nginx.
+
+---
+
+### 2.7 volumes
+
+Lưu trữ dữ liệu hoặc đồng bộ dữ liệu.
+
+Ví dụ:
+
+```yaml
+volumes:
+  - ./html:/usr/share/nginx/html
+```
+
+**Ý nghĩa:**
+Đồng bộ thư mục local với container.
+
+Ví dụ lưu database:
+
+```yaml
+volumes:
+  - mysql_data:/var/lib/mysql
+```
+
+---
+
+### 2.8 environment
+
+Khai báo biến môi trường.
+
+Ví dụ:
+
+```yaml
+environment:
+  MYSQL_ROOT_PASSWORD: 123456
+```
+
+**Ý nghĩa:**
+Truyền cấu hình vào container.
+
+---
+
+### 2.9 depends_on
+
+Khai báo container phụ thuộc.
+
+Ví dụ:
+
+```yaml
+depends_on:
+  - mysql
+```
+
+**Ý nghĩa:**
+Container web sẽ chạy sau mysql.
+
+---
+
+### 2.10 restart
+
+Tự khởi động lại container.
+
+Ví dụ:
+
+```yaml
+restart: always
+```
+
+**Ý nghĩa:**
+Container sẽ tự chạy lại khi bị lỗi hoặc máy khởi động lại.
+
+---
+
+### 2.11 networks
+
+Kết nối các container trong cùng mạng.
+
+Ví dụ:
+
+```yaml
+networks:
+  - app-network
+```
+
+Khai báo network:
+
+```yaml
+networks:
+  app-network:
+```
+
+**Ý nghĩa:**
+Cho phép container giao tiếp với nhau.
+
+Ví dụ: Node-RED kết nối InfluxDB bằng tên service.
+
+---
+
+### 2.12 command
+
+Ghi đè lệnh chạy mặc định.
+
+Ví dụ:
+
+```yaml
+command: npm start
+```
+
+**Ý nghĩa:**
+Chạy ứng dụng bằng lệnh tùy chỉnh.
+
+---
+
+### Ví dụ docker-compose.yml hoàn chỉnh
+
+```yaml
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx
+    container_name: my-nginx
+    ports:
+      - "8080:80"
+    restart: always
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+```
+
+---
+
+## 3. Ưu điểm khi triển khai ứng dụng bằng Docker
+
+### 3.1 Dễ triển khai
+
+Không cần cài thủ công:
+
+* Thư viện
+* Runtime
+* Dependency
+
+Chỉ cần chạy container là ứng dụng hoạt động.
+
+### 3.2 Đồng nhất môi trường
+
+Ứng dụng chạy giống nhau trên mọi máy.
+
+Tránh lỗi:
+
+> "Chạy trên máy em được nhưng sang máy khác lỗi"
+
+### 3.3 Dễ mở rộng
+
+Có thể chạy nhiều container cùng lúc.
+
+Ví dụ:
+
+```bash
+docker compose up --scale web=3
+```
+
+### 3.4 Tiết kiệm tài nguyên
+
+Docker nhẹ hơn máy ảo:
+
+* Khởi động nhanh
+* Tốn ít RAM
+* Không cần cài hệ điều hành riêng
+
+### 3.5 Dễ backup và restore
+
+Có thể export và khôi phục container nhanh chóng.
+
+### 3.6 Quản lý nhiều service dễ dàng
+
+Ví dụ hệ thống gồm:
+
+* Node-RED
+* InfluxDB
+* Grafana
+* Nginx
+
+Tất cả quản lý bằng:
+
+```text
+docker-compose.yml
+```
+
+---
+
+## 4. Triển khai app Docker lên máy chủ KHÔNG có Internet
+
+### Bước 1: Tạo và test app trên laptop cá nhân
+
+Chạy ứng dụng:
+
+```bash
+docker compose up -d
+```
+
+Kiểm tra:
+
+* App hoạt động bình thường
+* Không lỗi container
+* Database hoạt động ổn định
+
+---
+
+### Bước 2: Kiểm tra image đang sử dụng
+
+```bash
+docker images
+```
+
+Ví dụ các image:
+
+* nginx
+* mysql
+* node-red
+* influxdb
+* grafana
+
+---
+
+### Bước 3: Export image ra file
+
+```bash
+docker save -o app-images.tar nginx mysql grafana influxdb node-red
+```
+
+**Ý nghĩa:**
+Gộp toàn bộ image thành file `.tar`.
+
+---
+
+### Bước 4: Copy source code và file cấu hình
+
+Copy các file:
+
+```text
+docker-compose.yml
+.env
+source code
+volume backup
+```
+
+---
+
+### Bước 5: Chép sang máy chủ thật
+
+Có thể dùng:
+
+* USB
+* Ổ cứng ngoài
+* LAN nội bộ
+
+Copy:
+
+```text
+app-images.tar
+docker-compose.yml
+source code
+```
+
+sang máy chủ.
+
+---
+
+### Bước 6: Cài Docker trên máy chủ
+
+Cài:
+
+* Docker Engine
+* Docker Compose
+
+Không cần Internet nếu đã có image.
+
+---
+
+### Bước 7: Import image
+
+```bash
+docker load -i app-images.tar
+```
+
+Kiểm tra:
+
+```bash
+docker images
+```
+
+---
+
+### Bước 8: Khởi chạy ứng dụng
+
+```bash
+cd my-project
+docker compose up -d
+```
+
+---
+
+### Bước 9: Kiểm tra hoạt động
+
+Kiểm tra container:
+
+```bash
+docker ps
+```
+
+Xem log:
+
+```bash
+docker logs ten-container
+```
+
+Kiểm tra web:
+
+```text
+http://IP-may-chu:PORT
+```
+
+---
+
+## Kết luận
+
+Docker giúp triển khai ứng dụng nhanh, đồng nhất và dễ quản lý. Việc đóng gói ứng dụng bằng container giúp tránh lỗi khác môi trường và hỗ trợ triển khai ngay cả trên máy chủ không có Internet thông qua export/import Docker image.
+
+
+## THỰC HÀNH
+
 - Tạo thư mục
 ```text
 mkdir ~/bt5-monitor
@@ -239,9 +734,13 @@ Mở: http://192.168.44.134:8080
 
 - NODE-RED + TELEGRAM BOT ALERT
 
+- Tạo bot
+
+  <img width="828" height="1792" alt="image" src="https://github.com/user-attachments/assets/194857d1-820c-480c-b4c6-38423efdef2b" />
 
 - Add bot vào group
 
+<img width="828" height="1792" alt="image" src="https://github.com/user-attachments/assets/3fb09559-0523-4ff5-a650-04d6baf53897" />
 
 - Cài node Telegram trong Node-RED
 
@@ -270,7 +769,11 @@ Cấu hình bot
 
 <img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/008158d0-0ffa-43ab-ad71-4822570392ef" />
 
-- Kết quả ở bot
+- Kết quả khi nó báo về bot
+
+<img width="828" height="1792" alt="image" src="https://github.com/user-attachments/assets/bb9837ab-72a3-45cf-8fcb-9c54b361dd35" />
+
+<img width="828" height="1792" alt="image" src="https://github.com/user-attachments/assets/439a1766-ff48-4bd5-9cfc-32cd93533726" />
 
 Một số container lớn như Grafana, Node-RED không export được do giới hạn dung lượng máy ảo Ubuntu (20GB), hệ thống báo:
 
