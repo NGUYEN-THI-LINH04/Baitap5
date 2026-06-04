@@ -203,3 +203,13 @@ Cấu hình datasource
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e2f6f064-be03-4761-bbc1-a8679def0a36" />
 
+- Tạo cảnh báo nhiệt độ cao
+
+- Đặt tên cảnh báo: High Temperature Alert
+
+  <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/61d8b02f-cb2e-4c35-a161-789cb23a2813" />
+
+- Kết quả
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/b1e28758-8ae6-43d5-9125-1e543c00c3d6" />
+
