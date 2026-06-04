@@ -173,4 +173,33 @@ Double click node influxdb
 
 - Test InfluxDB có dữ liệu chưa
 
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/5a5d4966-5100-4cad-9689-dd3d7553fc0d" />
+
+- GRAFANA VẼ BIỂU ĐỒ
+
+- Mở Grafana
+
+   + Mở: http://192.168.44.134:3000
+
+<img width="941" height="1055" alt="image" src="https://github.com/user-attachments/assets/42e58f2a-a8a6-4217-ad45-a73a193a5127" />
+
+Cấu hình datasource
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/abe9b566-0770-4276-a2ff-e1df15fdd9bb" />
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/92c16eaf-9807-4d09-8298-51370df87536" />
+
+- TẠO DASHBOARD BIỂU ĐỒ REALTIME
+
+- Tạo query nhiệt độ
+
+<img width="941" height="529" alt="image" src="https://github.com/user-attachments/assets/93c90793-afc0-4f0d-9bc2-aef98ab5c9b5" />
+
+- Thêm độ ẩm
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/faee6a40-18c9-442a-93ca-a566b831ca0e" />
+
+- Thêm áp suất
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/e2f6f064-be03-4761-bbc1-a8679def0a36" />
 
